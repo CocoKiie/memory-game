@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <title>Fruits Memory Game</title>
+    <link rel="icon" href="/images/fruit.ico" type="image/ico">
+    <link rel="stylesheet" href="/css/game.css">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <header class="header">
+        <h1>Fruits Memory Game</h1>
+        <p>Qui détient la meilleure mémoire ?
+            <br> Découvrez le dans Fruits Memory Game !! 😎
+        </p>
+    </header>
+    <main class="main">
+        <div class="left">
+            <h2>Salon(s) disponible(s)</h2>
+            <div class="list-salons" id="rooms-list"></div>
+        </div>
+        <div class="right" id="user-card">
+            <h2 id="create">Créer un salon</h2>
+            <form action="" method="POST" id="form1">
+                <label for="pseudo" class="form-label">Pseudo</label>
+                <input type="text" id="pseudo" name="pseudo" class="form-control" maxlength="20"
+                    placeholder="Saisie ton pseudo..." required>
+                <input type="submit" id="start" value="Jouer">
+            </form>
+        </div>
+        <!--Apparait dès lors qu'on a crée un salon-->
+        <div id="waiting-area" class="invisible">
+            <div class="header">
+                <h1>Fruits Memory Game</h1>
+                <p>Les cartes seront bientôt mélangées, et votre mission sera de les assortir en utilisant votre mémoire et
+                votre rapidité. C'est le moment de montrer de quoi vous êtes capable ! 🧠
+                </p>
+            </div>
+            <div class="main">
+                <div class="left">
+                    <h2>En attente d'un autre joueur...</h2>
+                    <img src="/images/attente.gif" alt="En attente d'un autre joueur avec Mister Bean"
+                        aria-hidden="true">
+                </div>
+                <div class="mid" role="status">
+                    <img src="/images/chargement.gif" alt="chargement en cours" aria-hidden="true">
+                </div>
+                <div class="right">
+                    <h2>Partage ce lien pour inviter quelqu’un à jouer avec toi ! </h2>
+                    <span id="link-to-share"></span>
+                </div>
+            </div>
+        </div>
+
+        <!--Apparait dès lors qu'on a deux joueurs-->
+        <div id="game" class="game invisible">
+            <div class="header">
+                <h1>Fruits Memory Game</h1>
+                <p>Votre mission est de trouver les paires en un temps record avec le moins de mouvements possibles.
+                </br>Bon courage ! 💪</p>
+            </div>
+            <div class="wrapper">
+                <div class="controls">
+                    <button>Start</button>
+                    <div class="stats">
+                        <div class="moves">0 moves</div>
+                        <div class="timer">temps: 0 sec</div>
+                    </div>
+                    <div class="alert invisible" id="message"></div>
+                </div>
+                <div class="board-container">
+                    <div class="board" data-dimension="4">
+                        <div class="card">
+                            <div class="card-front"></div>
+                            <div class="card-back">🥔</div>
+                        </div>
+                    </div>
+                    <div class="win">Tu as gagné!</div>
+                    <button id="resetButton">Réinitialiser</button>
+                </div>
+                <div class="chat">
+                    <h1>Welcome !!
+                        <span id="connected-players">Nombre de joueur connecté : 0</span>
+                    </h1>
+                    <ul class="messages" id="messages"></ul>
+                    <form action="" id="form2">
+                        <input type="text" id="msg" placeholder="Écris ton message ici">
+                        <input id="sendButton" type="submit" value="Envoyer" class="submitChat" disabled>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>&copy 2023 - Tous droits réservés.</p>
+    </footer>
+</body>
+
+<script src="/jquery/jquery.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/index.js"></script>
+<script src="/js/js.js" defer></script>
+<script src="/js/chat.js" defer></script>
+
+</html>
